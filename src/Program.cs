@@ -1,4 +1,6 @@
 ﻿using System;
+using RazorEngine;
+using RazorEngine.Templating;
 
 namespace PushToApi
 {
@@ -6,7 +8,17 @@ namespace PushToApi
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-        }
+            string template = "Hello @Model.Name!";
+            var result = Engine
+                .Razor
+                .RunCompile(template,
+                    "templateKey",
+                    null,
+                    new
+                    {
+                        Name = "World"
+                    });
+
+            Console.WriteLine(result);        }
     }
 }
