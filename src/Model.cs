@@ -1,4 +1,5 @@
 using System;
+using System.Dynamic;
 
 namespace PushToApi
 {
@@ -11,6 +12,15 @@ namespace PushToApi
             return Now.ToString();
         }}
 
-        public dynamic Ext {get;set;}
+        public ExpandoObject Ext {get;set;}
+
+        public void Init() {
+            if (this.Now == DateTime.MinValue) {
+                this.Now = DateTime.Now;
+            }
+            if (this.Uuid == Guid.Empty) {
+                this.Uuid = Guid.NewGuid();
+            }
+        }
     }
 }
