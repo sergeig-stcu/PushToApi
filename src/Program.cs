@@ -3,6 +3,7 @@ using System.Dynamic;
 using System.IO;
 using RazorEngine;
 using RazorEngine.Templating;
+using System.Threading.Tasks;
 
 namespace PushToApi {
     class Program {
@@ -19,6 +20,10 @@ namespace PushToApi {
             return $"templates/{TargetName(args)}.yaml";
         }
 
+        static string ConfigFileName(string[] args) {
+            return args[1];
+        }
+
         static Model ReadModel(string[] args) {
             var deserializer = new YamlDotNet.Serialization.Deserializer();
             var text = File.ReadAllText(ModelFileName(args));
@@ -26,16 +31,27 @@ namespace PushToApi {
             return rv;
         }
 
-        static String DescribeModel(Model m) {
+        static Config ReadConfig(string[] args) {
+            var deserializer = new YamlDotNet.Serialization.Deserializer();
+            var text = File.ReadAllText(ConfigFileName(args));
+            var rv = deserializer.Deserialize<Config>(text);
+            return rv;
+        }
+        static String Describe<T>(T m) {
             var serializer = new YamlDotNet.Serialization.Serializer();
             var rv = serializer.Serialize(m);
             return rv;
         }
 
-        static void Main(string[] args) {
-            if (args.Length < 1) {
-                Console.WriteLine("Template file name is expected as 1st argument.");
-                return;
+        static void PromptToContinue() {
+            Console.WriteLine("Press Enter to continue...");
+            Console.ReadLine();
+        }
+
+        static async Task<int> Main(string[] args) {
+            if (args.Length < 2) {
+                Console.WriteLine("SYNTAX: template_file_name config_file_name");
+                return 1;
             }
             var template = File.ReadAllText(TemplateFileName(args));
             var targetName = TargetName(args);
@@ -43,24 +59,33 @@ namespace PushToApi {
 
             var model = ReadModel(args);
             model.Init();
-            Console.WriteLine("Using Model:");
-            Console.WriteLine();
-            Console.WriteLine(DescribeModel(model));
+            Console.WriteLine("    ==Using Model==");
+            Console.WriteLine(Describe(model));
 
-            Console.WriteLine("Proceed?  Press ENTER...");
-            Console.ReadLine();
+            var config = ReadConfig(args);
+            Console.WriteLine("    ==Usisng Config==");
+            Console.WriteLine(Describe(config));
 
-            var result = Engine
+            PromptToContinue();
+
+            var payload = Engine
                 .Razor
                 .RunCompile(template,
                     templateKey,
                     null,
                     model);
 
-            Console.WriteLine(result);
+            Console.WriteLine(payload);
+
+            PromptToContinue();
+
+            int errCode = await RestPusher.SendMessageAsync(config, model, payload);
+            return errCode;
         }
-    }
-}
+
+    } // end of class
+
+} // end of namespace
 
 /*
             var m = new Model() {

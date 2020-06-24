@@ -1,0 +1,4 @@
+Description: Encompass
+EP:
+    PathSuffix: /process/v1/member/event/
+    Method: POST

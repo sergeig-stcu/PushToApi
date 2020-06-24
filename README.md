@@ -3,5 +3,5 @@
 ## Usage
 
 ```
-dotnet run -- templates/hello.txt
+dotnet run -- templates/event.json user/dev.yaml
 ```
