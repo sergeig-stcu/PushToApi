@@ -35,7 +35,7 @@ namespace PushToApi {
             get {
                 // need format 
                 // 2020-06-24T00:07:19.417Z
-                return Now.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+                return Now.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
             }
         }
 
