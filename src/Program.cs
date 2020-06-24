@@ -43,8 +43,8 @@ namespace PushToApi {
             return rv;
         }
 
-        static void PromptToContinue() {
-            Console.WriteLine("Press Enter to continue...");
+        static void PromptToContinue(string msg) {
+            Console.WriteLine($"{msg}  Press Enter to continue...");
             Console.ReadLine();
         }
 
@@ -66,7 +66,7 @@ namespace PushToApi {
             Console.WriteLine("    ==Usisng Config==");
             Console.WriteLine(Describe(config));
 
-            PromptToContinue();
+            PromptToContinue("Ready to process template?");
 
             var payload = Engine
                 .Razor
@@ -77,7 +77,7 @@ namespace PushToApi {
 
             Console.WriteLine(payload);
 
-            PromptToContinue();
+            PromptToContinue("Ready to send data?");
 
             int errCode = await RestPusher.SendMessageAsync(config, model, payload);
             return errCode;

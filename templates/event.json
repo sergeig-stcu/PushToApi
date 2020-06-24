@@ -1,129 +1,20 @@
 {
-    "audience": "Employee",
+    "audience": "Member",
     "origin": {
-        "systemName": "Encompass",
-        "data": {
-            "mortgageType": "Conventional",
-            "channel": "Banked - Retail",
-            "currentState": {
-                "milestoneCurrentDateUtc": "@Model.MilestoneCurrentDateUtc",
-                "role": "Closer",
-                "stage": "Ready for Docs",
-                "stage_done": false,
-                "streetAddress": "7911 E Somewhere Ave",
-                "encompassState": {
-                    "currentMilestone": {
-                        "r": "Loan Processor",
-                        "s": "Final Processing"
-                    },
-                    "milestoneCurrentName": {
-                        "r": "Loan Processor",
-                        "s": "Final Processing"
-                    },
-                    "stage": {
-                        "r": "Closer",
-                        "s": "Ready for Docs"
-                    },
-                    "milestoneStage": {
-                        "r": null,
-                        "s": "PREQUAL"
-                    },
-                    "currentTeamMember": {
-                        "r": "Closer",
-                        "s": "closingqueue",
-                        "c": 1
-                    },
-                    "coreMilestone": {
-                        "r": "Loan Processor",
-                        "s": "Final Processing"
-                    },
-                    "lastCompleted": {
-                        "r": "Loan Processor",
-                        "s": "Final Processing"
-                    }
-                },
-                "loanNumber": "@Model.LoanNumber",
-                "stcuMilestone": "Ready for Docs",
-                "memberId": "@Model.RelationshipId",
-                "encompassEvent": {
-                    "eventId": "94835930-",
-                    "meta": {
-                        "resourceRef": "/encompass/v1/loans/d74763c2-f886-4104-b1e7-e5f7f8fe71cd",
-                        "resourceId": "d74763c2-f886-4104-b1e7-e5f7f8fe71cd",
-                        "instanceId": "be11176710",
-                        "userId": "christinad",
-                        "resourceType": "Loan"
-                    },
-                    "eventTime": "2020-06-24T00:07:13.0516712Z",
-                    "eventType": "Update"
-                }
-            },
-            "previousState": {
-                "milestoneCurrentDateUtc": "2020-06-23T23:33:42Z",
-                "role": "Loan Processor",
-                "stage": "Final Processing",
-                "stage_done": false,
-                "streetAddress": "7911 E Somewhere Ave",
-                "encompassState": {
-                    "currentMilestone": {
-                        "r": "Underwriter",
-                        "s": "Approval"
-                    },
-                    "milestoneCurrentName": {
-                        "r": {},
-                        "s": "Approved"
-                    },
-                    "stage": {
-                        "r": "Loan Processor",
-                        "s": "Final Processing"
-                    },
-                    "milestoneStage": {
-                        "r": {},
-                        "s": "PREQUAL"
-                    },
-                    "currentTeamMember": {
-                        "r": "Loan Processor",
-                        "s": "christinad",
-                        "c": 1
-                    },
-                    "coreMilestone": {
-                        "r": "Underwriter",
-                        "s": "Approval"
-                    },
-                    "lastCompleted": {
-                        "r": "Underwriter",
-                        "s": "Approval"
-                    }
-                },
-                "loanNumber": "@Model.LoanNumber",
-                "stcuMilestone": "Loan Processor",
-                "memberId": "@Model.RelationshipId",
-                "encompassEvent": {
-                    "eventId": "3fa8420a-",
-                    "meta": {
-                        "resourceRef": "/encompass/v1/loans/d74763c2-f886-4104-b1e7-e5f7f8fe71cd",
-                        "resourceId": "d74763c2-f886-4104-b1e7-e5f7f8fe71cd",
-                        "instanceId": "be11176710",
-                        "userId": "christinad",
-                        "resourceType": "Loan"
-                    },
-                    "eventTime": "2020-06-24T00:03:28.1461319Z",
-                    "eventType": "Update"
-                }
-            }
-        },
-        "dataSchemaName": "Milestone"
+        "systemName": "Test",
+        "data": {},
+        "dataSchemaName": "NoData"
     },
     "defaultMessage": {
-        "body": "TEST MESSAGE! The STCU closing team is working to prepare final documents to close your home loan.",
-        "title": "TEST MESSAGE! Your home loan status has changed.",
+        "title": "Test event.",
+        "body": "Test event.",
         "moreInfoUri": ""
     },
-    "correlationId": "test-id",
+    "correlationId": "00000000-0000-0000-0000-000000000000",
     "id": "@Model.Id",
     "relationshipId": "@Model.RelationshipId",
-    "priority": "Normal",
-    "category": "Loans",
-    "type": "Mortgage",
+    "priority": "High",
+    "category": "Service Request",
+    "type": "TravelNotification",
     "recordedTimestamp": "@Model.RecordedTimestamp"
 }
