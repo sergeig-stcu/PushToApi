@@ -47,7 +47,7 @@ namespace PushToApi {
             Console.WriteLine();
             Console.WriteLine(DescribeModel(model));
 
-            Console.WriteLine("Proceed?");
+            Console.WriteLine("Proceed?  Press ENTER...");
             Console.ReadLine();
 
             var result = Engine
